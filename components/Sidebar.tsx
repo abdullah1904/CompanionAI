@@ -28,6 +28,7 @@ const Sidebar = () => {
     ]
     const onNavigate = (url: string, pro: boolean) => {
         // TODO: 
+        console.log(pro);
         return router.push(url);
     }
     return (
@@ -51,7 +52,6 @@ const Sidebar = () => {
                     ))}
                 </div>
             </div>
-
         </div>
     )
 }
