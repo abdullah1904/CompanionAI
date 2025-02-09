@@ -6,10 +6,9 @@ type Props = {
     params: Promise<{ companionId: string }>
 }
 
-
-const CompanionIdPage = async ({params }: Props) => {
+const CompanionIdPage = async ({ params }: Props) => {
     // TODO: Check Subscription
-    const {companionId} = await params;
+    const { companionId } = await params;
     const companion = await prismadb.companion.findUnique({
         where: {
             id: companionId
@@ -18,7 +17,7 @@ const CompanionIdPage = async ({params }: Props) => {
     const categories = await prismadb.category.findMany({});
     return (
         <div>
-            <CompanionForm initialData={companion} categories={categories}/>
+            <CompanionForm initialData={companion} categories={categories} />
         </div>
     )
 }
