@@ -1,5 +1,5 @@
 import prismadb from "@/lib/db";
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 type RequestProps = {
@@ -12,7 +12,7 @@ export const PATCH = async (req: Request, { params }: RequestProps) => {
         const body = await req.json();
         const user = await currentUser();
         const { src, name, description, instructions, seed, categoryId } = body;
-        if(!companionId){
+        if (!companionId) {
             return new NextResponse("Companion ID is required", { status: 400 });
         }
         if (!user || !user.id || !user.firstName) {
@@ -41,6 +41,27 @@ export const PATCH = async (req: Request, { params }: RequestProps) => {
     }
     catch (error) {
         console.log('{COMPANION_PATCH}', error);
+        return new NextResponse("Internal Server Error", { status: 500 });
+    }
+}
+
+export const DELETE = async (req: Request, { params }: RequestProps) => {
+    try {
+        const { companionId } = await params;
+        const { userId } = await auth();
+        if (!userId) {
+            return new NextResponse("Unauthorized", { status: 401 });
+        }
+        const companion = await prismadb.companion.delete({
+            where: {
+                userId,
+                id: companionId
+            }
+        });
+        return NextResponse.json(companion);
+    }
+    catch (error) {
+        console.log('{COMPANION_DELETE}', error);
         return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
