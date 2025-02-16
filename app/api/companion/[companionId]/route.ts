@@ -24,7 +24,8 @@ export const PATCH = async (req: Request, { params }: RequestProps) => {
         // TODO: Check for Subscription
         const companion = await prismadb.companion.update({
             where: {
-                id: companionId
+                id: companionId,
+                userId: user.id,
             },
             data: {
                 src,
