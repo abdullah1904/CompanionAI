@@ -29,7 +29,7 @@ const ChatMessages = ({ messages = [], companion, isLoading= true }: Props) => {
     <div className='flex-1 overflow-y-auto pr-4'>
       <ChatMessage isLoading={fakeLoading} src={companion.src} role='system' content={`Hello, I am ${companion.name}, ${companion.description} `} />
       {messages.map((message)=>(
-        <ChatMessage key={message.content} role={message.role} content={message.content} src={message.src} />
+        <ChatMessage key={message.content} role={message.role} content={message.content} src={companion.src} />
       ))}
       {isLoading && <ChatMessage isLoading={true} role='system' src={companion.src} />}
       <div ref={scrollRef}/>

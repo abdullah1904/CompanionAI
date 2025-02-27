@@ -1,3 +1,4 @@
+#### ❌ Project Stopped: Model Unavailable & Deprecated Packages 😢
 <div>
     <h1>Companion.AI</h1>
 </div>
@@ -17,5 +18,16 @@ NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=''
 DATABASE_URL=""
 
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=''
+
+PINECONE_INDEX=""
+PINECONE_ENVIRONMENT=""
+PINECONE_API_KEY=""
+
+UPSTASH_REDIS_REST_URL=""
+UPSTASH_REDIS_REST_TOKEN=""
+
+OPENAI_API_KEY=""
+
+REPLICATE_API_TOKEN=""
 
 ```
